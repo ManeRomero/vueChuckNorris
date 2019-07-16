@@ -1,4 +1,9 @@
 # vuechucknorris
+<<ahora en español!>>
+
+Trying to explore some funny Vue Chuck Norris API. Thanks to:
+<<chuck norris API>> · https://api.chucknorris.io/
+<<translation to spanish>> · https://tech.yandex.com/translate/
 
 ## Project setup
 ```
@@ -9,21 +14,3 @@ npm install
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

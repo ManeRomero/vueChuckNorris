@@ -1,10 +1,11 @@
 <template>
-  <div class="">
-    <h4>{{ frase }}</h4>
-    <img alt="Chuck Norris es el Hombre." 
-    src="http://cinedivergente.com/wp-content/uploads/2015/08/Chuck-Norris-vs-Communism.jpg">
-    <chucknorris titulo="chuck norris ahora usa Vue!" :fraseChuck="frase"/>
-
+  <div>
+    <chucknorris 
+      titulo="chuck norris ahora usa Vue!"
+      :fraseChuck="frase"
+      :imgPath="imgPath" 
+      :imgAlt="imgAlt"
+    />
   </div>
 </template>
 
@@ -12,10 +13,12 @@
 import chucknorris from "@/components/chucknorris.vue";
 
 export default {
-  name: "home",
   data() {
     return {
-      frase: "dddddd"
+      frase: "",
+      imgPath:
+        "http://cinedivergente.com/wp-content/uploads/2015/08/Chuck-Norris-vs-Communism.jpg",
+      imgAlt: "Chuck Norris puede vencer hasta con el Comunismo"
     };
   },
   mounted() {
@@ -25,12 +28,10 @@ export default {
     chucknorris
   },
   methods: {
-    getFrase() {
-      fetch("https://api.chucknorris.io/jokes/random").then(resp => {
-        resp.json().then((data) => {
-          this.frase = data.value;
-        });
-      });
+    async getFrase() {
+      let resp = await fetch("https://api.chucknorris.io/jokes/random");
+      let data = await resp.json();
+      this.frase = data.value.toUpperCase();
     }
   }
 };

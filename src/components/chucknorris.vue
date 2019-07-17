@@ -2,7 +2,7 @@
   <div class="container">
     <h2>The Chuck Norris API</h2>
     <small>por fin en Español</small>
-    <div class="pic">
+    <div class="pic" :title="fraseChuck">
       <img :src="imgPath" :alt="imgAlt">
       <transition name="textin" mode="out-in">
         <h1 :style="lengthStyle"> {{ fraseTraducida }} </h1>
@@ -10,9 +10,10 @@
     </div>
     <div>
       <button>{{'Pónmelo otra vez, Chuck'.toUpperCase()}}</button>
-      <small>{{ fraseChuck }}</small>
+      <button>{{'Quiero jugar a la RuletaChuck!'.toUpperCase()}}</button>
+      <small>powered by yandex translate ©</small>
     </div>
-    <a href="https://tech.yandex.com/translate/">powered by yandex translate ©</a>
+    <a href="https://github.com/ManeRomero">Mi GitHub</a>
   </div>
 </template>
 
@@ -51,7 +52,7 @@ export default {
       let arrUrls = [
         "https://translate.yandex.net",
         "/api/v1.5/tr.json/translate?lang=en-es&key=",
-        "HERE GOES THE API KEY",
+        "trnsl.1.1.20190716T202405Z.18540fd6fcd25f09.4c8a21645fc436d7b42a51a1b4c62ddb0abf947e",
         "&text="
       ];
 
@@ -62,8 +63,8 @@ export default {
 
       let resp = await fetch(urlToQuery);
       let data = await resp.json();
-      console.log(data.text[0].trim());
-      return (this.fraseTraducida = data.text[0].trim());
+      console.log(data.text[0]);
+      return (this.fraseTraducida = data.text[0]);
     }
   }
 };
@@ -97,7 +98,6 @@ h1 {
   color: white;
   z-index: 1000;
   position: absolute;
-  align-self: center;
   justify-self: center;
   letter-spacing: 6px;
   margin: auto;

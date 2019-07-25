@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <h2>The Chuck Norris API</h2>
-    <small>por fin en Español</small>
-    <div class="pic" :title="fraseChuck">
+    <h2>The Chuck Herald</h2>
+    <small>Edición en Español</small>
+    <div class="pic" :title="frase">
       <img :src="imgPath" :alt="imgAlt">
       <transition name="textin" mode="out-in">
-        <h1 :style="lengthStyle"> {{ fraseTraducida }} </h1>
+        <h1 :style="lengthStyle"> {{ frase }} </h1>
       </transition>
     </div>
     <div>
@@ -22,7 +22,7 @@ export default {
   name: "chucknorris",
   props: {
     titulo: String,
-    fraseChuck: String,
+    frase: String,
     imgAlt: String,
     imgPath: String
   },
@@ -42,29 +42,6 @@ export default {
         style += "2vw";
       }
       return style;
-    },
-    async loadingFrase() {}
-  },
-  async updated() {
-    if (this.fraseChuck.length === 0) {
-      return "...relájate o sufre la ira de Chuck!";
-    } else {
-      let arrUrls = [
-        "https://translate.yandex.net",
-        "/api/v1.5/tr.json/translate?lang=en-es&key=",
-        "trnsl.1.1.20190716T202405Z.18540fd6fcd25f09.4c8a21645fc436d7b42a51a1b4c62ddb0abf947e",
-        "&text="
-      ];
-
-      let fraseTraducir = this.fraseChuck.split(" ").join("+");
-      arrUrls.push(fraseTraducir);
-      let urlToQuery = arrUrls.join("");
-      console.log(urlToQuery);
-
-      let resp = await fetch(urlToQuery);
-      let data = await resp.json();
-      console.log(data.text[0]);
-      return (this.fraseTraducida = data.text[0]);
     }
   }
 };
